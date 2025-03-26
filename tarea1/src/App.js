@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { useTheme } from "./ThemeContext";
 
-function App() {
+const Container = styled.div`
+  background: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.color};
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+`;
+
+const Button = styled.button`
+  background: ${(props) => (props.theme.background === "#222" ? "#555" : "#ddd")};
+  color: ${(props) => (props.theme.background === "#222" ? "#fff" : "#333")};
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background: ${(props) => (props.theme.background === "#222" ? "#777" : "#bbb")};
+  }
+`;
+
+const App = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <h1>Modo {theme === "light" ? "Claro" : "Oscuro"}</h1>
+      <Button onClick={toggleTheme}>Cambiar Tema</Button>
+    </Container>
   );
-}
+};
 
 export default App;
