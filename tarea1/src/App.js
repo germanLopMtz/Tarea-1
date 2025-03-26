@@ -1,43 +1,21 @@
 import React from "react";
-import styled from "styled-components";
-import { useTheme } from "./ThemeContext";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Card, Button } from "react-bootstrap";
 
-const Container = styled.div`
-  background: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.color};
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: all 0.3s ease-in-out;
-`;
-
-const Button = styled.button`
-  background: ${(props) => (props.theme.background === "#222" ? "#555" : "#ddd")};
-  color: ${(props) => (props.theme.background === "#222" ? "#fff" : "#333")};
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: background 0.3s ease-in-out;
-
-  &:hover {
-    background: ${(props) => (props.theme.background === "#222" ? "#777" : "#bbb")};
-  }
-`;
-
-const App = () => {
-  const { theme, toggleTheme } = useTheme();
-
+function App() {
   return (
-    <Container>
-      <h1>Modo {theme === "light" ? "Claro" : "Oscuro"}</h1>
-      <Button onClick={toggleTheme}>Cambiar Tema</Button>
+    <Container className="mt-5 d-flex justify-content-center">
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>React + Bootstrap</Card.Title>
+          <Card.Text>
+            Esta es una tarjeta de Bootstrap dentro de un proyecto React.
+          </Card.Text>
+          <Button variant="primary">Haz clic aquí</Button>
+        </Card.Body>
+      </Card>
     </Container>
   );
-};
+}
 
 export default App;
